@@ -21,8 +21,8 @@ public class User extends BaseModel {
     @ManyToMany
     @JoinTable(
             name = "user_tags",
-            joinColumns = @JoinColumn("user_id"),
-            inverseJoinColumns = @JoinColumn("tag_id")
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private Set<Tag> followedTags;
 

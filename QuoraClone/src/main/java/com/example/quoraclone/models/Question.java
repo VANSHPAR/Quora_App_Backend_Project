@@ -19,8 +19,8 @@ public class Question extends BaseModel{
     @ManyToMany
     @JoinTable(
             name = "user_tags",
-            joinColumns = @JoinColumn("question_id"),
-            inverseJoinColumns = @JoinColumn("tag_id")
+            joinColumns = @JoinColumn(name = "question_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private Set<Tag> tags;
 

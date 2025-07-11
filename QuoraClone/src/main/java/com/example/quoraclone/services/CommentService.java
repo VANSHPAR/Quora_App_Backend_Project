@@ -30,11 +30,11 @@ public class CommentService {
     }
 
     public List<Comment> getCommentsByAnswerId(Long answerId,int offset,int limit) {
-        return commentRepository.findByAnswerId(answerId, (Pageable) PageRequest.of(offset,limit)).getContent();
+        return commentRepository.findByAnswerId(answerId,  PageRequest.of(offset,limit)).getContent();
     }
 
     public List<Comment> getRepliesByCommentId(Long commentId,int offset,int limit) {
-        return commentRepository.findByParentCommentId(commentId, (Pageable) PageRequest.of(offset,limit)).getContent();
+        return commentRepository.findByParentCommentId(commentId, PageRequest.of(offset,limit)).getContent();
     }
 
     public Optional<Comment> getCommentById(Long commentId) {

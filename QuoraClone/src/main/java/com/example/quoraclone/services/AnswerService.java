@@ -29,7 +29,11 @@ public class AnswerService {
     }
 
     public List<Answer> getAnswersByQuestionId(Long questionId,int page,int pageSize) {
-        return answerRepository.findByQuestionId(questionId, (Pageable) PageRequest.of(page,pageSize)).getContent();
+        return answerRepository.findByQuestionId(questionId,  PageRequest.of(page,pageSize)).getContent();
+    }
+
+    public Answer getAnswerById(Long id){
+        return answerRepository.findById(id).get();
     }
 
     public Answer createAnswer(AnswerDto answerDto) {

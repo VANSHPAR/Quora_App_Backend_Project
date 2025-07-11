@@ -9,9 +9,6 @@ import lombok.*;
 @MappedSuperclass
 @Getter
 @Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

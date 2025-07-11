@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import javax.xml.stream.events.Comment;
+
 import java.util.Set;
 
 @Getter
@@ -26,13 +26,13 @@ public class Answer extends BaseModel {
     private User user;
 
     @OneToMany(mappedBy = "answer")
-    private Set<Comment> comment;
+    private Set<Comment> comments;
 
     @ManyToMany
     @JoinTable(
             name = "answer_likes",
-            joinColumns = @JoinColumn("answer_id"),
-            inverseJoinColumns = @JoinColumn("user_id")
+            joinColumns = @JoinColumn(name = "answer_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<User> likedBy;
 }
