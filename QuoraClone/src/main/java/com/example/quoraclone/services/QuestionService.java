@@ -14,6 +14,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class QuestionService {
 
@@ -41,12 +43,15 @@ public class QuestionService {
         question.setTitle(questionDto.getTitle());
         question.setContent(questionDto.getContent());
         Optional<User> user=userRepository.findById(questionDto.getUserId());
+        user.ifPresent(question::setUser);
 
-        Set<Long> tags=new  HashSet<>();
-        Set<Long> s=questionDto.getTagIds();
-        for(Long x:s){
-            tags.add(x);
-        }
+        Set<Tag> tags=questionDto.getTagIds().stream()
+                .map(tagRepository::findById)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toSet());
+        question.setTags(tags);
+
         return questionRepository.save(question);
     }
 }
